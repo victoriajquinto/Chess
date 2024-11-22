@@ -1,24 +1,37 @@
 import { Text, SafeAreaView, StyleSheet } from "react-native";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+import Board from "@/components/Board"
 
 export default function Index() {
 
-  //create states for boardstate
+  const [boardState , setBoardState] = useState<string[][][] | null >(null)
 
-  //import board with 8 x 8 squares. squares should be fed prop with square color, piece/null, piece color
+  //helper function to create initial board state.
+  const initializeBoard = (): string[][][] => {
+    return [
+      [["b", "Rook"], ["b", "Knight"], ["b", "Bishop"], ["b", "Queen"], ["b", "King"], ["b", "Bishop"], ["b", "Knight"], ["b", "Rook"]],
+      [["b", "Pawn"], ["b", "Pawn"], ["b", "Pawn"], ["b", "Pawn"], ["b", "Pawn"], ["b", "Pawn"], ["b", "Pawn"], ["b", "Pawn"]],
+      [["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""]],
+      [["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""]],
+      [["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""]],
+      [["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""]],
+      [["w", "Pawn"], ["w", "Pawn"], ["w", "Pawn"], ["w", "Pawn"], ["w", "Pawn"], ["w", "Pawn"], ["w", "Pawn"], ["w", "Pawn"]],
+      [["w", "Rook"], ["w", "Knight"], ["w", "Bishop"], ["w", "King"], ["w", "Queen"], ["w", "Bishop"], ["w", "Knight"], ["w", "Rook"]],
+    ];
+  };
 
-  //on initialization, create initial board state 
+  useEffect(() => {
+    const newBoard = initializeBoard();
+    setBoardState(newBoard);
+  }, []);
+
+  //on initialization, create initial board state
 
 
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+    <SafeAreaView>
+      <Board boardState={boardState}/>
     </SafeAreaView>
   );
 

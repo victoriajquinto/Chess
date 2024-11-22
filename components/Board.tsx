@@ -3,10 +3,10 @@ import { FlatList, View, StyleSheet } from 'react-native';
 import Cell from '@/components/Cell';
 
 type BoardProps = {
-  BoardState: string[][]
+  BoardState: string[][][]
 }
 
-export default function Board({ BoardState }: BoardProps) {
+export default function Board({ boardState }: BoardProps) {
 
   return(
     <View>
