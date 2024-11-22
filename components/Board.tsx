@@ -13,14 +13,15 @@ export default function Board({ boardState }: BoardProps) {
   //flatten board
   const flattened = boardState.flatMap((row, rIndex) => {
     //map through the row, referencing cell and column index
-      //define key
-      //define color
-      //define type
-      //define board's square color
-  } )
+    row.map((cell, cIndex) => ({
+      color: cell[0],
+      type: cell[1],
+      squareColor: (rIndex + cIndex) % 2 === 0
+    }))
+  })
 
   const createCell = (cell: string[]) => {
-    return <Cell color={cell[0]} type={cell[1]} squareColor={}/>
+    return <Cell color={cell[0]} type={cell[1]} squareColor={cell[2]}/>
   }
 
   return (
@@ -28,12 +29,9 @@ export default function Board({ boardState }: BoardProps) {
       <FlatList
         data={flattened}
         numColumns={8}
-        renderItem={createCell}
+        renderItem={createCell} //error occuring because there is something wrong with how i'm creating the cell
         extractorKey=
-      >
-
-      </FlatList>
-
+      ></FlatList>
     </View>
   )
 
