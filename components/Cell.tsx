@@ -4,19 +4,36 @@ import { View, StyleSheet} from 'react-native';
 type PieceProps = {
   color: string,
   type: string,
+  squareColor: string,
 }
 
-export default function Cell({type, team}: PieceProps) {
-  return(
-    <View style={styles.cellContainer}> </View>
-  )
+export default function Cell({color, type, squareColor}: PieceProps) {
+
+  {if (squareColor == 'light') {
+    return(
+      <View style={styles.lightContainer}>{color} {type}</View>
+    )
+  } else {
+    return (
+      <View style={styles.darkContainer}>{color} {type}</View>
+    )
+  }}
+
 }
 
 const styles = StyleSheet.create({
-  cellContainer: {
-    width: 18,
-    height: 18,
+  lightContainer: {
+    width: 44,
+    height: 44,
     borderWidth: 2,
-    borderColor: 'black'
+    borderColor: 'black',
+    backgroundColor: 'cream'  //find a hex code later
   },
+    darkContainer: {
+    width: 44,
+    height: 44,
+    borderWidth: 2,
+    borderColor: 'black',
+    backgroundColor: 'brown' //find a hex code later
+  }
 })

@@ -3,18 +3,45 @@ import { FlatList, View, StyleSheet } from 'react-native';
 import Cell from '@/components/Cell';
 
 type BoardProps = {
-  BoardState: string[][][]
+  boardState: string[][][]
 }
 
 export default function Board({ boardState }: BoardProps) {
 
-  return(
+  //iterate through the board and create cells
+
+  //flatten board
+  const flattened = boardState.flatMap((row, rIndex) => {
+    //map through the row, referencing cell and column index
+      //define key
+      //define color
+      //define type
+      //define board's square color
+  } )
+
+  const createCell = (cell: string[]) => {
+    return <Cell color={cell[0]} type={cell[1]} squareColor={}/>
+  }
+
+  return (
     <View>
-      <FlatList>
-          {/* { Create 8 x 8 board} by rendering cells for each item in BoardState */}
+      <FlatList
+        data={flattened}
+        numColumns={8}
+        renderItem={createCell}
+        extractorKey=
+      >
+
       </FlatList>
+
     </View>
   )
 
 }
+
+
+
+const styles = StyleSheet.create({
+  //create styles for board
+})
 
